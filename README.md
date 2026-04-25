@@ -1,6 +1,6 @@
-# Bun HTTP Framework Benchmark
+# Bun HTTP Framework Benchmark Microservices
 
-Compare throughput benchmarks from various JavaScript HTTP framework
+Compare throughput benchmarks between microservices and monolith in Bun, using Elysia as the framework.
 
 Test method: Average throughput
 
@@ -31,13 +31,9 @@ Test method: Average throughput
 
 ## requirement
 
--   The framework must at-least has latest published in less than 9 month otherwise will be classified as unmaintained and removed unless is an industry standard (Express).
-
 # Prerequistes
 
 -   [bombardier](https://github.com/codesenberg/bombardier)
--   Nodejs
--   Deno
 -   Bun
 
 # Run Test
@@ -52,46 +48,29 @@ Dump result will be available at `results/[benchmark-name].txt`
 
 This benchmark is tested under the following condition:
 
--   Intel I7-13700K, DDR5 32GB 5600MHz
--   Arch Linux 6.10.9-arch1-2 (btw I use Arch)
--   Bun 1.2.11
--   Node 22.15.0
--   Deno 2.2.0
+-   AMD Ryzen Threadripper PRO 9995WX s (3) @ 2.500GHz
+-   12 GB DDR5
+-   Ubuntu 22.04.5 LTS x86_64
+-   Bun 1.3.13
 
-Tested on 6 May 2025 20:55 (GMT+7)
+Tested on 4/26/2026
 
 ## Results
 
 These results are measured in req/s:
 
-|  Framework       | Runtime | Average | Ping       | Query      | Body       |
-| ---------------- | ------- | ------- | ---------- | ---------- | ---------- |
-| uws | node | 526,295.397 | 535,079.45 | 509,759.27 | 534,047.47 |
-| ultimate-express | node | 416,645.31 | 526,907.98 | 508,436.34 | 214,591.61 |
-| elysia | bun | 397,259.163 | 533,560.05 | 300,716.41 | 357,501.03 |
-| bun | bun | 366,716.193 | 386,961.93 | 317,958.96 | 395,227.69 |
-| hyper-express | node | 315,844.147 | 370,809.65 | 299,522.59 | 277,200.2 |
-| bun-web-standard | bun | 303,568.81 | 338,462.84 | 255,297.65 | 316,945.94 |
-| nhttp | bun | 283,734.777 | 373,377.37 | 244,767.65 | 233,059.31 |               | wobe | bun | 282,858.987 | 282,509.03 | 250,687.47 | 315,380.46 |
-| hono | bun | 253,646.173 | 294,945.14 | 236,066.25 | 229,927.13 |
-| deno | deno | 247,770.227 | 269,520.16 | 233,460.27 | 240,330.25 |
-| nbit | bun | 229,226.153 | 252,902.81 | 196,843.1 | 237,932.55 |
-| deno-web-standard | deno | 204,908.633 | 236,235.96 | 183,458.05 | 195,031.89 |
-| hono | deno | 201,548.523 | 250,592.98 | 195,744.04 | 158,308.55 |
-| fastify | node | 142,695.487 | 155,142.07 | 148,078.23 | 124,866.16 |
-| hono | node | 129,234.593 | 144,842.92 | 134,412.44 | 108,448.42 |
-| express | bun | 126,674.41 | 145,427.54 | 134,805.54 | 99,790.15 |
-| oak | bun | 120,481.7 | 117,743.45 | 109,295.56 | 134,406.09 |
-| h3 | bun | 109,739.16 | 132,720.75 | 104,854.13 | 91,642.6 |
-| h3 | node | 101,237.803 | 136,023.12 | 111,361.83 | 56,328.46 |
-| oak | deno | 100,205.983 | 105,824.67 | 93,335 | 101,458.28 |                    | koa | node | 96,456.887 | 103,217.62 | 97,582.12 | 88,570.92 |
-| acorn | deno | 64,951.337 | 95,734.91 | 71,099.63 | 28,019.47 |
-| express | node | 25,079.01 | 26,286.22 | 24,796.49 | 24,154.32 |
-
-See more detail in [results](https://github.com/SaltyAom/bun-http-framework-benchmark/tree/main/results)
+| Framework                          | Runtime | Average     | Ping       | Query      | Body      |
+| ---------------------------------- | ------- | ----------- | ---------- | ---------- | --------- |
+| elysia-5-single-instance           | bun     | 122,691.147 | 169,849.61 | 113,102.37 | 85,121.46 |
+| elysia-1-monorepo-functions        | bun     | 115,398.22  | 176,625.29 | 96,758.69  | 72,810.68 |
+| bun-1-single-instance              | bun     | 111,254.237 | 143,359.73 | 108,103.59 | 82,299.39 |
+| bun-1-web-standard-single-instance | bun     | 93,584.12   | 107,275.99 | 92,836.73  | 80,639.64 |
+| fastify-1-single-instance          | bun     | 62,865.347  | 75,381.52  | 70,677.66  | 42,536.86 |
+| elysia-2-monorepo-instances        | bun     | 58,434.02   | 74,519.66  | 58,607.28  | 42,175.12 |
+| elysia-3-microservices-in-process  | bun     | 42,286.44   | 55,825.42  | 39,636.31  | 31,397.59 |
+| express-1-single-instance          | bun     | 39,130.66   | 36,033.27  | 38,090.11  | 43,268.6  |
+| elysia-4-microservices-network     | bun     | 13,277.577  | 16,043.09  | 11,788.47  | 12,001.17 |
 
 ## Notice
 
 I highly recommended testing this benchmark on your machine yourself as performance in likely to vary between machine.
-
-If you are unable to run Deno, please run each Deno app individually first until the Deno finish installing the package, then proceed to run benchmark using `bench.sh` or `npm run benchmark`
