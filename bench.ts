@@ -12,33 +12,7 @@ import { $, pathToFileURL } from 'bun'
 const whitelists = <string[]>[]
 
 // ? Not working
-const blacklists = [
-	// Not booting up in test
-	'node/adonis/index',
-	// Not setting content-type header for some reason
-	'node/nest/index',
-	// 'Not booting up in test'
-	'node/hapi',
-	// Body: Result not match
-	'bun/xirelta',
-	// Crash
-	'bun/bagel',
-	// Crash
-	'bun/bunrest',
-	// Doesn't work properly
-	'bun/colston',
-	// Crash on 0.6.2
-	'bun/zarf',
-	// Crash due to invalid npm version requirement of uWebSockets
-	'deno/byte',
-	// Crash
-	'bun/fastify',
-	// failed to parse body in benchmark
-	'bun/byte',
-	// doesn't run
-	'bun/vixeny',
-	'node/elysia'
-] as const
+const blacklists = [] as const
 
 const time = 10
 
