@@ -48,29 +48,31 @@ Dump result will be available at `results/[benchmark-name].txt`
 
 This benchmark is tested under the following condition:
 
--   AMD Ryzen Threadripper PRO 9995WX s (3) @ 2.500GHz
--   12 GB DDR5
--   Ubuntu 22.04.5 LTS x86_64
--   Bun 1.3.13
+-   4 vCPU / 16 GB cloud VM (load generator and servers on the same machine)
+-   Ubuntu 24.04 x86_64
+-   Bun 1.4.4
 
-Tested on 4/26/2026
+Tested on 11/22/2026
 
 ## Results
 
 These results are measured in req/s:
 
-| Framework                          | Runtime | Average     | Ping       | Query      | Body      |
-| ---------------------------------- | ------- | ----------- | ---------- | ---------- | --------- |
-| elysia-5-single-instance           | bun     | 122,691.147 | 169,849.61 | 113,102.37 | 85,121.46 |
-| elysia-1-monorepo-functions        | bun     | 115,398.22  | 176,625.29 | 96,758.69  | 72,810.68 |
-| bun-1-single-instance              | bun     | 111,254.237 | 143,359.73 | 108,103.59 | 82,299.39 |
-| bun-1-web-standard-single-instance | bun     | 93,584.12   | 107,275.99 | 92,836.73  | 80,639.64 |
-| fastify-1-single-instance          | bun     | 62,865.347  | 75,381.52  | 70,677.66  | 42,536.86 |
-| elysia-2-monorepo-instances        | bun     | 58,434.02   | 74,519.66  | 58,607.28  | 42,175.12 |
-| elysia-3-microservices-in-process  | bun     | 42,286.44   | 55,825.42  | 39,636.31  | 31,397.59 |
-| express-1-single-instance          | bun     | 39,130.66   | 36,033.27  | 38,090.11  | 43,268.6  |
-| elysia-4-microservices-network     | bun     | 13,277.577  | 16,043.09  | 11,788.47  | 12,001.17 |
+| Framework                               | Runtime | Average     | Ping       | Query     | Body      |
+| --------------------------------------- | ------- | ----------- | ---------- | --------- | --------- |
+| bun-1-single-instance                   | bun     | 105,467.037 | 118,464.58 | 108,180.5 | 89,756.03 |
+| elysia-1-monorepo-functions             | bun     | 104,592.523 | 118,332.58 | 106,000.8 | 89,444.19 |
+| bun-1-web-standard-single-instance      | bun     | 102,067.463 | 115,154.27 | 99,228.57 | 91,819.55 |
+| elysia-5-single-instance                | bun     | 90,626.29   | 105,891.29 | 92,874.56 | 73,113.02 |
+| elysia-6-monorepo-functions-async-bound | bun     | 82,465.177  | 87,832.43  | 86,190.91 | 73,372.19 |
+| elysia-2-monorepo-instances             | bun     | 72,130.443  | 90,101.77  | 77,594.46 | 48,695.1  |
+| fastify-1-single-instance               | bun     | 68,276.647  | 80,489.75  | 77,793.69 | 46,546.5  |
+| elysia-3-microservices-in-process       | bun     | 50,643.553  | 64,931.41  | 47,328.85 | 39,670.4  |
+| express-1-single-instance               | bun     | 48,798.193  | 51,452.13  | 46,801.99 | 48,140.46 |
+| elysia-4-microservices-network          | bun     | 11,256.347  | 11,479.67  | 11,048.42 | 11,240.95 |
 
 ## Notice
+
+The `fastify-1-single-instance` Body result is not valid: every request to `/json` returned a 4xx response, so its Body and Average figures should be ignored until that is fixed.
 
 I highly recommended testing this benchmark on your machine yourself as performance in likely to vary between machine.
