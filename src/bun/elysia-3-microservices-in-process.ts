@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia'
-import { treaty } from '@elysiajs/eden'
+import { treaty } from '@elysia/eden'
 
 // Setup 3: Microservices via in-process Eden Treaty
 // A and B are Elysia instances; public endpoint calls them through

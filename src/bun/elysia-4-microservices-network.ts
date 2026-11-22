@@ -1,5 +1,5 @@
 import { Elysia } from 'elysia'
-import { treaty } from '@elysiajs/eden'
+import { treaty } from '@elysia/eden'
 
 // Setup 4: Microservices via network Eden Treaty
 // A and B run as fully separate HTTP services on their own ports.
